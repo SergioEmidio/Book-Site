@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <div id="header">
+        <h1>Cadastro do Cliente</h1>
+    </div>
+
+    <!-- TÍTULO DA SEÇÃO 1 -->
+    <div id="main">
+        <h3>Dados Pessoais</h3>
+    </div>
+
+    <!-- FORMULÁRIO 1 — DADOS PESSOAIS -->
+    <form id="form-dados" action="salvar.php" method="post" novalidate>
+
+        <!-- Nome Completo — Floating Label -->
+        <div class="floating-field">
+            <input type="text" id="nomeCompleto" placeholder=" " required>
+            <label for="nomeCompleto">Nome Completo</label>
+            <small id="nomeErro" style="color:red; display:none;"></small>
+        </div>
+
+        <!-- Data de Nascimento -->
+        <div class="input-calendar">
+            <label for="dataNascimento">Data de Nascimento</label>
+            <input type="date" id="dataNascimento" required>
+            <small id="dataErro" style="color:red; display:none;"></small>
+        </div>
+
+        <!-- E-mail — Floating Label -->
+        <div class="floating-field">
+            <input type="email" id="email" name="email" placeholder=" " required>
+            <label for="email">E-mail</label>
+            <small id="emailHelp" style="display:none; color:#A07840; font-style:italic; font-size:0.8rem; margin-top:4px;">
+                Use um e-mail válido como: exemplo@gmail.com ou exemplo@hotmail.com
+            </small>
+        </div>
+
+        <!-- Telefone -->
+        <div class="input-group-number">
+            <label for="phone">Telefone <span style="font-size:0.78rem; font-weight:400; color:#A07840;">(ex: (81) 99999-0000)</span></label>
+            <input type="tel" id="phone" required placeholder="(DDD) 00000-0000">
+            <small id="phoneErro" style="color:red; display:none;"></small>
+        </div>
+
+    </form>
+
+    <!-- DIVISÓRIA ENTRE SEÇÕES -->
+    <div class="secao-divisoria">
+        <div class="secao-divisoria-inner"></div>
+    </div>
+
+    <!-- TÍTULO DA SEÇÃO 2 -->
+    <div id="main-1">
+        <h1>Informações Adicionais</h1>
+    </div>
+
+    <!-- FORMULÁRIO 2 — INFORMAÇÕES ADICIONAIS -->
+    <form id="form-adicional" novalidate>
+
+        <!-- Preferências Literárias -->
+        <div id="sistema-literario-root">
+            <h3 id="titulo-preferencias">Preferências de gêneros literários</h3>
+            <div id="gera-tags-selecionadas" style="margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap;"></div>
+            <div id="gera-container-principal" style="position: relative; width: 100%; max-width: 600px; margin-bottom: 20px;">
+                <input type="text" id="gera-input-genero" placeholder="Pesquise o gênero (ex: A, AC, B...)" autocomplete="off">
+                <ul id="gera-lista-genero"></ul>
+            </div>
+            <div id="gera-secao-perguntas"></div>
+        </div>
+
+        <!-- Preferências de Autores -->
+        <div id="sistema-autores-root">
+            <h3 id="titulo-preferencias-autores">Preferências de Autores(as)</h3>
+            <div id="autor-tags-selecionadas" style="margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap;"></div>
+            <div id="autor-container-principal" style="position: relative; width: 100%; max-width: 600px; margin-bottom: 20px;">
+                <input type="text" id="autor-input" placeholder="Pesquise o(a) autor(a) (ex: A, Ma, Jo...)" autocomplete="off">
+                <ul id="autor-lista"></ul>
+            </div>
+            <div id="autor-secao-perguntas"></div>
+        </div>
+
+    </form>
+
+    <!-- ÁREA DO BOTÃO ENVIAR -->
+    <div class="area-botao-enviar">
+        <button id="btn-enviar" class="btn-enviar" type="button">
+            <span class="btn-texto">Enviar Cadastro do Cliente</span>
+            <span class="btn-icone">✦</span>
+        </button>
+    </div>
+
+    <!-- ===== POPUP DE ERRO ===== -->
+    <div id="popup-erro" class="popup-overlay" aria-hidden="true">
+        <div class="popup-caixa popup-caixa--erro">
+            <div class="popup-icone-wrap">
+                <span class="popup-icone">⚠</span>
+            </div>
+            <h2 class="popup-titulo">Ops! Faltaram algumas informações</h2>
+            <p class="popup-msg" id="popup-erro-msg"></p>
+            <p class="popup-sub">Revise os campos destacados e tente enviar novamente.</p>
+            <button class="popup-btn popup-btn--erro" id="btn-popup-erro-fechar">Corrigir agora</button>
+        </div>
+    </div>
+
+    <!-- ===== POPUP DE SUCESSO ===== -->
+    <div id="popup-sucesso" class="popup-overlay" aria-hidden="true">
+        <div class="popup-caixa popup-caixa--sucesso">
+            <div class="popup-icone-wrap">
+                <span class="popup-icone">✔</span>
+            </div>
+            <h2 class="popup-titulo">CADASTRO REALIZADO!</h2>
+            <p class="popup-msg">Seja bem-vindo(a)! Seu cadastro foi concluído com sucesso.</p>
+            <button class="btn-enviar btn-enviar--sucesso" id="btn-prosseguir" type="button">
+                <span class="btn-texto">Cadastro realizado, prossiga</span>
+                <span class="btn-icone">→</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="form.js"></script>
+
+</body>
+</html>
