@@ -155,27 +155,73 @@ const phoneInput = document.getElementById("phone");
 const phoneErro = document.getElementById("phoneErro");
 
 const ddds = {
-    "11": "sp", "12": "sp", "13": "sp", "14": "sp", "15": "sp",
-    "16": "sp", "17": "sp", "18": "sp", "19": "sp",
-    "21": "rj", "22": "rj", "24": "rj",
-    "27": "es", "28": "es",
-    "31": "mg", "32": "mg", "33": "mg", "34": "mg", "35": "mg", "37": "mg", "38": "mg",
-    "41": "pr", "42": "pr", "43": "pr", "44": "pr", "45": "pr", "46": "pr",
-    "47": "sc", "48": "sc", "49": "sc",
-    "51": "rs", "53": "rs", "54": "rs", "55": "rs",
-    "61": "df", "62": "go", "64": "go", "63": "to",
-    "65": "mt", "66": "mt", "67": "ms",
-    "68": "ac", "69": "ro",
-    "71": "ba", "73": "ba", "74": "ba", "75": "ba", "77": "ba",
+    "11": "sp",
+    "12": "sp",
+    "13": "sp",
+    "14": "sp",
+    "15": "sp",
+    "16": "sp",
+    "17": "sp",
+    "18": "sp",
+    "19": "sp",
+    "21": "rj",
+    "22": "rj",
+    "24": "rj",
+    "27": "es",
+    "28": "es",
+    "31": "mg",
+    "32": "mg",
+    "33": "mg",
+    "34": "mg",
+    "35": "mg",
+    "37": "mg",
+    "38": "mg",
+    "41": "pr",
+    "42": "pr",
+    "43": "pr",
+    "44": "pr",
+    "45": "pr",
+    "46": "pr",
+    "47": "sc",
+    "48": "sc",
+    "49": "sc",
+    "51": "rs",
+    "53": "rs",
+    "54": "rs",
+    "55": "rs",
+    "61": "df",
+    "62": "go",
+    "64": "go",
+    "63": "to",
+    "65": "mt",
+    "66": "mt",
+    "67": "ms",
+    "68": "ac",
+    "69": "ro",
+    "71": "ba",
+    "73": "ba",
+    "74": "ba",
+    "75": "ba",
+    "77": "ba",
     "79": "se",
-    "81": "pe", "87": "pe",
-    "82": "al", "83": "pb", "84": "rn",
-    "85": "ce", "88": "ce",
-    "86": "pi", "89": "pi",
-    "91": "pa", "93": "pa", "94": "pa",
-    "92": "am", "97": "am",
-    "95": "rr", "96": "ap",
-    "98": "ma", "99": "ma"
+    "81": "pe",
+    "87": "pe",
+    "82": "al",
+    "83": "pb",
+    "84": "rn",
+    "85": "ce",
+    "88": "ce",
+    "86": "pi",
+    "89": "pi",
+    "91": "pa",
+    "93": "pa",
+    "94": "pa",
+    "92": "am",
+    "97": "am",
+    "95": "rr",
+    "96": "ap",
+    "98": "ma",
+    "99": "ma"
 };
 
 // Extrai só os dígitos que o usuário digitou, ignorando o prefixo +55
@@ -371,7 +417,7 @@ function gera_configurarBuscador(inputId, listaId, dados, callback, limparAposSe
         return li;
     }
 
-    input.addEventListener('focus', function () {
+    input.addEventListener('focus', function() {
         if (this.value === '') {
             lista.innerHTML = '';
             foco = -1;
@@ -380,7 +426,7 @@ function gera_configurarBuscador(inputId, listaId, dados, callback, limparAposSe
         }
     });
 
-    input.addEventListener('input', function () {
+    input.addEventListener('input', function() {
         const val = this.value.toUpperCase();
         lista.innerHTML = '';
         foco = -1;
@@ -394,12 +440,12 @@ function gera_configurarBuscador(inputId, listaId, dados, callback, limparAposSe
         }
     });
 
-    input.addEventListener('keydown', function (e) {
+    input.addEventListener('keydown', function(e) {
         const itens = lista.getElementsByTagName('li');
         if (itens.length === 0) return;
-        if (e.key === "ArrowDown") { foco = (foco + 1) % itens.length; atualizarVisualGera(itens, foco); }
-        else if (e.key === "ArrowUp") { foco = (foco - 1 + itens.length) % itens.length; atualizarVisualGera(itens, foco); }
-        else if (e.key === "Enter") { e.preventDefault(); if (foco > -1) itens[foco].click(); }
+        if (e.key === "ArrowDown") { foco = (foco + 1) % itens.length;
+            atualizarVisualGera(itens, foco); } else if (e.key === "ArrowUp") { foco = (foco - 1 + itens.length) % itens.length;
+            atualizarVisualGera(itens, foco); } else if (e.key === "Enter") { e.preventDefault(); if (foco > -1) itens[foco].click(); }
     });
 
     document.addEventListener('click', (e) => {
@@ -409,8 +455,10 @@ function gera_configurarBuscador(inputId, listaId, dados, callback, limparAposSe
 
 function atualizarVisualGera(itens, foco) {
     Array.from(itens).forEach((li, idx) => {
-        if (idx === foco) { li.style.backgroundColor = '#333'; li.style.color = '#fff'; li.scrollIntoView({ block: "nearest" }); }
-        else { li.style.backgroundColor = '#fff'; li.style.color = '#000'; }
+        if (idx === foco) { li.style.backgroundColor = '#333';
+            li.style.color = '#fff';
+            li.scrollIntoView({ block: "nearest" }); } else { li.style.backgroundColor = '#fff';
+            li.style.color = '#000'; }
     });
 }
 
@@ -695,37 +743,56 @@ const autor_obrasSalvas = {};
 // SISTEMA DE AUTORES — LÓGICA E INTERFACE
 // =============================================
 
-function autor_aplicarEstiloInabalavel(el) {
+// estaNoFluxo: true  → lista no fluxo normal (empurra o botão para baixo quando abre)
+//              false → lista flutuante absolute (dropdowns internos de obra)
+function autor_aplicarEstiloInabalavel(el, estaNoFluxo) {
     el.style.display = 'none';
-    el.style.position = 'absolute';
-    el.style.top = '100%';
-    el.style.left = '0';
-    el.style.right = '0';
-    el.style.zIndex = '9999999';
-    el.style.backgroundColor = '#fff';
-    el.style.border = '2px solid #333';
+    el.style.listStyle = 'none';
     el.style.margin = '0';
     el.style.padding = '0';
-    el.style.listStyle = 'none';
-    el.style.maxHeight = '250px';
+    el.style.backgroundColor = '#fff';
+    el.style.border = '2px solid #D4A855';
+    el.style.borderRadius = '0 0 10px 10px';
+    el.style.maxHeight = '260px';
     el.style.overflowY = 'auto';
-    el.style.boxShadow = '0px 8px 16px rgba(0,0,0,0.2)';
+    el.style.boxShadow = '0px 8px 20px rgba(180,100,10,0.18)';
+
+    if (estaNoFluxo) {
+        // Ocupa espaço real — empurra o botão Enviar para baixo
+        el.style.position = 'static';
+        el.style.width = '100%';
+        el.style.zIndex = '';
+        el.style.top = '';
+        el.style.left = '';
+        el.style.right = '';
+    } else {
+        // Flutua sobre o conteúdo
+        el.style.position = 'absolute';
+        el.style.top = '100%';
+        el.style.left = '0';
+        el.style.right = '0';
+        el.style.zIndex = '9999999';
+        el.style.width = '';
+    }
 }
 
 function autor_atualizarVisual(itens, foco) {
     Array.from(itens).forEach((li, idx) => {
-        if (idx === foco) { li.style.backgroundColor = '#333'; li.style.color = '#fff'; li.scrollIntoView({ block: "nearest" }); }
-        else { li.style.backgroundColor = '#fff'; li.style.color = '#000'; }
+        if (idx === foco) { li.style.backgroundColor = '#333';
+            li.style.color = '#fff';
+            li.scrollIntoView({ block: "nearest" }); } else { li.style.backgroundColor = '#fff';
+            li.style.color = '#000'; }
     });
 }
 
 // limparAposSelecao: true  → campo de autor (limpa o input após escolher)
 //                   false → campo de obra   (mantém o valor escolhido visível)
-function autor_configurarBuscador(inputId, listaId, dados, callback, limparAposSelecao) {
+function autor_configurarBuscador(inputId, listaId, dados, callback, limparAposSelecao, estaNoFluxo) {
     const input = document.getElementById(inputId);
     const lista = document.getElementById(listaId);
 
-    autor_aplicarEstiloInabalavel(lista);
+    // estaNoFluxo=true → lista do buscador principal, empurra o botão para baixo
+    autor_aplicarEstiloInabalavel(lista, estaNoFluxo === true);
     let foco = -1;
 
     function criarItemLista(item) {
@@ -745,7 +812,7 @@ function autor_configurarBuscador(inputId, listaId, dados, callback, limparAposS
         return li;
     }
 
-    input.addEventListener('focus', function () {
+    input.addEventListener('focus', function() {
         if (this.value === '') {
             lista.innerHTML = '';
             foco = -1;
@@ -754,7 +821,7 @@ function autor_configurarBuscador(inputId, listaId, dados, callback, limparAposS
         }
     });
 
-    input.addEventListener('input', function () {
+    input.addEventListener('input', function() {
         const val = this.value.toUpperCase();
         lista.innerHTML = '';
         foco = -1;
@@ -768,12 +835,12 @@ function autor_configurarBuscador(inputId, listaId, dados, callback, limparAposS
         }
     });
 
-    input.addEventListener('keydown', function (e) {
+    input.addEventListener('keydown', function(e) {
         const itens = lista.getElementsByTagName('li');
         if (itens.length === 0) return;
-        if (e.key === "ArrowDown") { foco = (foco + 1) % itens.length; autor_atualizarVisual(itens, foco); }
-        else if (e.key === "ArrowUp") { foco = (foco - 1 + itens.length) % itens.length; autor_atualizarVisual(itens, foco); }
-        else if (e.key === "Enter") { e.preventDefault(); if (foco > -1) itens[foco].click(); }
+        if (e.key === "ArrowDown") { foco = (foco + 1) % itens.length;
+            autor_atualizarVisual(itens, foco); } else if (e.key === "ArrowUp") { foco = (foco - 1 + itens.length) % itens.length;
+            autor_atualizarVisual(itens, foco); } else if (e.key === "Enter") { e.preventDefault(); if (foco > -1) itens[foco].click(); }
     });
 
     document.addEventListener('click', (e) => {
@@ -835,6 +902,7 @@ function autor_atualizarInterface() {
 }
 
 // Inicialização do sistema de autores
+// Último parâmetro true = estaNoFluxo → lista empurra o botão Enviar para baixo
 autor_configurarBuscador('autor-input', 'autor-lista', autor_listaAutores, (escolha) => {
     if (autor_escolhas.length < 4 && !autor_escolhas.includes(escolha)) {
         autor_escolhas.push(escolha);
@@ -842,19 +910,19 @@ autor_configurarBuscador('autor-input', 'autor-lista', autor_listaAutores, (esco
         autor_obrasSalvas[nomeAutor] = escolha;
         autor_atualizarInterface();
     }
-}, true);
+}, true, true);
 
 
 // =============================================
 // BOTÃO ENVIAR — VALIDAÇÃO E POPUPS
 // =============================================
 
-const btnEnviar      = document.getElementById('btn-enviar');
-const popupErro      = document.getElementById('popup-erro');
-const popupSucesso   = document.getElementById('popup-sucesso');
-const popupErroMsg   = document.getElementById('popup-erro-msg');
-const btnFecharErro  = document.getElementById('btn-popup-erro-fechar');
-const btnProsseguir  = document.getElementById('btn-prosseguir');
+const btnEnviar = document.getElementById('btn-enviar');
+const popupErro = document.getElementById('popup-erro');
+const popupSucesso = document.getElementById('popup-sucesso');
+const popupErroMsg = document.getElementById('popup-erro-msg');
+const btnFecharErro = document.getElementById('btn-popup-erro-fechar');
+const btnProsseguir = document.getElementById('btn-prosseguir');
 
 // Abre um popup
 function abrirPopup(popup) {
@@ -899,7 +967,8 @@ function resetarFormulario() {
     // Limpa mensagens de erro
     ['nomeErro', 'dataErro', 'phoneErro'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) { el.style.display = 'none'; el.textContent = ''; }
+        if (el) { el.style.display = 'none';
+            el.textContent = ''; }
     });
 
     // Remove validações customizadas
@@ -941,7 +1010,7 @@ function coletarPendencias() {
         pendencias.push('Data de nascimento não preenchida');
     } else {
         const idade = calcularIdade(data);
-        if (idade < 0)   pendencias.push('Data de nascimento inválida (data no futuro)');
+        if (idade < 0) pendencias.push('Data de nascimento inválida (data no futuro)');
         if (idade > 122) pendencias.push('Data de nascimento inválida (idade acima de 122 anos)');
     }
 
@@ -986,7 +1055,3 @@ btnEnviar.addEventListener('click', () => {
         abrirPopup(popupSucesso);
     }
 });
-// redirecionar
-document.getElementById("btn-prosseguir").onclick = function() {
-    window.location.href = "biblioteca.html";
-}
