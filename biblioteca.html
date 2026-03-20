@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookLeaf — Biblioteca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bookp/biblioteca.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+    <div class="navbar-esquerda">
+        <div class="logo-wrap">
+            <span class="logo-icone">🍀</span>
+            <span class="logo-nome">BookLeaf</span>
+        </div>
+        <nav class="menu-nav">
+            <div class="menu-item" id="menu-explorar">
+                Explorar <span class="seta">▾</span>
+                <div class="dropdown" id="drop-explorar">
+                    <a href="#secao-generos">Por Gênero</a>
+                    <a href="#secao-livros">Todos os Livros</a>
+                    <a href="#">Mais Lidos</a>
+                    <a href="#">Novidades</a>
+                </div>
+            </div>
+            <div class="menu-item" id="menu-comunidade">
+                Comunidade <span class="seta">▾</span>
+                <div class="dropdown" id="drop-comunidade">
+                    <a href="#">Fóruns</a>
+                    <a href="#">Listas de Leitura</a>
+                    <a href="#">Autores em Destaque</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="navbar-centro">
+        <div class="search-wrap">
+            <span class="search-icone">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Pesquisar livros, autores, gêneros…">
+            <button class="search-btn" id="searchBtn">Buscar</button>
+        </div>
+    </div>
+
+    <div class="navbar-direita">
+        <a href="index.html" class="btn-cadastro">
+            <span>Cadastro</span>
+        </a>
+        <div class="user-wrap" id="userWrap">
+            <div class="user-avatar" id="userAvatar">
+                <!-- FOTO DO USUÁRIO: coloque a tag <img src="SUA_FOTO.jpg"> aqui -->
+                <span class="avatar-placeholder" id="avatarPlaceholder">👤</span>
+                <img src="" alt="Foto do usuário" class="avatar-img" id="avatarImg" style="display:none;">
+            </div>
+            <span class="user-nome" id="userNome">Visitante</span>
+            <div class="user-dropdown">
+                <a href="index.html">Meu Cadastro</a>
+                <a href="#">Minha Estante</a>
+                <a href="#">Configurações</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ===== HERO BANNER ===== -->
+<section class="hero" id="hero">
+    <div class="hero-conteudo">
+        <p class="hero-tag">📚 Sua biblioteca particular</p>
+        <h1 class="hero-titulo">Descubra o próximo<br><em>capítulo</em> da sua vida</h1>
+        <p class="hero-sub">20 obras cuidadosamente selecionadas em múltiplos gêneros literários.</p>
+        <div class="hero-btns">
+            <a href="#secao-livros" class="btn-hero btn-hero--primario">Explorar Acervo</a>
+            <a href="#secao-generos" class="btn-hero btn-hero--secundario">Por Gênero</a>
+        </div>
+    </div>
+    <div class="hero-livros-flutuantes" aria-hidden="true">
+        <div class="livro-flutuante lf1"></div>
+        <div class="livro-flutuante lf2"></div>
+        <div class="livro-flutuante lf3"></div>
+    </div>
+</section>
+
+<!-- ===== FILTRO POR GÊNERO ===== -->
+<section class="secao-generos" id="secao-generos">
+    <div class="secao-header">
+        <h2 class="secao-titulo">Explorar por Gênero</h2>
+        <p class="secao-sub">Selecione uma categoria e os livros aparecem em ordem alfabética</p>
+    </div>
+    <div class="generos-lista" id="generoLista">
+        <!-- Gerado pelo JS -->
+    </div>
+</section>
+
+<!-- ===== RESULTADO DO FILTRO ===== -->
+<section class="secao-resultado" id="secaoResultado" style="display:none;">
+    <div class="secao-header">
+        <h2 class="secao-titulo" id="resultadoTitulo">Livros de —</h2>
+        <button class="btn-limpar" id="btnLimparFiltro">✕ Ver todos</button>
+    </div>
+    <div class="livros-grid" id="resultadoGrid">
+        <!-- Gerado pelo JS -->
+    </div>
+</section>
+
+<!-- ===== TODOS OS LIVROS ===== -->
+<section class="secao-livros" id="secao-livros">
+    <div class="secao-header">
+        <h2 class="secao-titulo">Acervo Completo</h2>
+        <p class="secao-sub">20 obras — passe o cursor para ver detalhes</p>
+    </div>
+    <div class="livros-grid" id="livrosGrid">
+        <!-- Gerado pelo JS -->
+    </div>
+</section>
+
+<!-- ===== RODAPÉ ===== -->
+<footer class="rodape">
+    <div class="rodape-conteudo">
+        <div class="rodape-logo">
+            <span class="logo-icone">🍀</span>
+            <span class="logo-nome">BookLeaf</span>
+        </div>
+        <p class="rodape-copy">© 2025 BookLeaf — Todos os direitos reservados.</p>
+        <div class="rodape-links">
+            <a href="index.html">Cadastro</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Contato</a>
+        </div>
+    </div>
+</footer>
+
+<script src="bookp/biblioteca.js"></script>
+</body>
+</html>

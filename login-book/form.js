@@ -882,12 +882,10 @@ btnFecharErro.addEventListener('click', () => {
     resetarFormulario();
 });
 
-// Botão "Cadastro realizado, prossiga" — redireciona ou executa a ação desejada
+// Botão "Cadastro realizado, prossiga" — redireciona para a biblioteca
 btnProsseguir.addEventListener('click', () => {
     fecharPopup(popupSucesso);
-    // Substitua a linha abaixo pelo redirecionamento real do seu projeto:
-    // window.location.href = 'dashboard.html';
-    alert('Redirecionando para o próximo passo!');
+    window.location.href = 'biblioteca.html';
 });
 
 // Reseta todos os campos e estados do formulário
@@ -981,7 +979,14 @@ btnEnviar.addEventListener('click', () => {
         popupErroMsg.innerHTML = `Encontramos <strong>${pendencias.length} campo(s)</strong> que precisam de atenção:<br><br>${lista}`;
         abrirPopup(popupErro);
     } else {
+        // Salva o nome no localStorage para a página da biblioteca usar
+        const nomeCadastrado = document.getElementById('nomeCompleto').value.trim();
+        if (nomeCadastrado) localStorage.setItem('bookleaf_nome', nomeCadastrado);
         // Tudo válido — exibe popup de sucesso
         abrirPopup(popupSucesso);
     }
 });
+// redirecionar
+document.getElementById("btn-prosseguir").onclick = function() {
+    window.location.href = "biblioteca.html";
+}
